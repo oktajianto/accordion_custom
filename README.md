@@ -156,6 +156,28 @@ AccordionCustom(
 )
 ```
 
+### Divider between header and content
+
+By default there is **no line** separating the header from the content. To show
+one, set `dividerColor` (and optionally `dividerWidth`) on the content style:
+
+```dart
+AccordionCustom(
+  contentStyle: AccordionContentStyle(
+    dividerColor: Colors.grey.shade300,
+    dividerWidth: 1, // optional, defaults to 1
+  ),
+  children: const [
+    AccordionItem(
+      header: Text('What is accordion_custom?'),
+      content: Text('A line now separates this content from the header.'),
+    ),
+  ],
+)
+```
+
+The divider only shows while the panel is expanded.
+
 Provide a completely custom header with `headerBuilder`, which receives the
 current expanded state:
 

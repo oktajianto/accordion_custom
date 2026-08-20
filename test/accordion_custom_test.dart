@@ -95,6 +95,34 @@ void main() {
       expect(find.text('Body A'), findsOneWidget);
     });
 
+    testWidgets('per-item style overrides the accordion style', (tester) async {
+      await tester.pumpWidget(
+        _wrap(
+          const AccordionCustom(
+            headerStyle: AccordionHeaderStyle(backgroundColor: Colors.blue),
+            children: [
+              AccordionItem(header: Text('Default'), content: Text('a')),
+              AccordionItem(
+                header: Text('Overridden'),
+                content: Text('b'),
+                headerStyle: AccordionHeaderStyle(backgroundColor: Colors.red),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      Color? inkColor(String label) {
+        final ink = tester.widget<Ink>(
+          find.ancestor(of: find.text(label), matching: find.byType(Ink)),
+        );
+        return (ink.decoration as BoxDecoration?)?.color;
+      }
+
+      expect(inkColor('Default'), Colors.blue);
+      expect(inkColor('Overridden'), Colors.red);
+    });
+
     testWidgets('disabled panel ignores taps', (tester) async {
       await tester.pumpWidget(
         _wrap(

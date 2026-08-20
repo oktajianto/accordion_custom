@@ -156,6 +156,34 @@ AccordionCustom(
 )
 ```
 
+### Per-panel styling
+
+`headerStyle`/`contentStyle` on `AccordionCustom` apply to every panel. To style
+one panel differently, set `headerStyle`/`contentStyle` on its `AccordionItem` —
+they **replace** the accordion-level style for that panel:
+
+```dart
+AccordionCustom(
+  children: [
+    AccordionItem(
+      header: const Text('Success'),
+      headerStyle: AccordionHeaderStyle(backgroundColor: Colors.green.shade50),
+      contentStyle: AccordionContentStyle(backgroundColor: Colors.green.shade50),
+      content: const Text('Green header and body.'),
+    ),
+    AccordionItem(
+      header: const Text('Warning'),
+      headerStyle: AccordionHeaderStyle(backgroundColor: Colors.orange.shade50),
+      contentStyle: AccordionContentStyle(backgroundColor: Colors.orange.shade50),
+      content: const Text('Orange header and body.'),
+    ),
+  ],
+)
+```
+
+To inherit the accordion's style and change only a few fields, pass a
+`copyWith`: `contentStyle: myBaseContentStyle.copyWith(backgroundColor: ...)`.
+
 ### Divider between header and content
 
 By default there is **no line** separating the header from the content. To show
@@ -326,7 +354,8 @@ AccordionCustom(
 | `enableKeyboardNavigation` | ↑/↓ focus movement between headers. |
 
 **`AccordionItem`**: `header` or `headerBuilder`, `content`,
-`initiallyExpanded`, `enabled`, `semanticLabel`.
+`initiallyExpanded`, `enabled`, `semanticLabel`, and optional per-panel
+`headerStyle` / `contentStyle`.
 
 **`AccordionController`**: `expand`, `collapse`, `toggle`, `expandAll`,
 `collapseAll`, `isExpanded(index)`, `expandedIndexes`.

@@ -37,6 +37,7 @@ class HomePage extends StatelessWidget {
           _Section('.builder from a data list', BuilderDemo()),
           _Section('Controller: expand / collapse all', ControllerDemo()),
           _Section('Custom colors, border & radius', StyledDemo()),
+          _Section('Per-panel styling (different per item)', PerPanelDemo()),
           _Section('Custom padding', PaddingDemo()),
           _Section('Divider between header & content', DividerDemo()),
           _Section('Custom header (headerBuilder)', CustomHeaderDemo()),
@@ -194,20 +195,61 @@ class StyledDemo extends StatelessWidget {
         ),
       ),
       contentStyle: AccordionContentStyle(
-        backgroundColor: Colors.indigo.shade50.withValues(alpha: 0.4),
+        // A clearly visible custom body background.
+        backgroundColor: Colors.indigo.shade50,
         dividerColor: Colors.indigo.shade100,
       ),
       children: const [
+        // Both panels share the same style — they only differ in text. The
+        // second one exists to show the itemSpacing gap between cards.
         AccordionItem(
           header: Text('Fully themed panel'),
           content: Text(
-            'Background, border color and width, corner radius, the icon side, '
-            'and text style are all set through the style objects.',
+            'Header AND body backgrounds, border color and width, corner '
+            'radius, the icon side, and text style all come from the styles.',
           ),
         ),
         AccordionItem(
           header: Text('Second themed panel'),
-          content: Text('itemSpacing puts a gap between cards.'),
+          content: Text('Same style as above; itemSpacing adds the gap.'),
+        ),
+      ],
+    );
+  }
+}
+
+class PerPanelDemo extends StatelessWidget {
+  const PerPanelDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // headerStyle/contentStyle on an AccordionItem replace the accordion-level
+    // style for that panel, so each panel can look different.
+    return AccordionCustom(
+      children: [
+        AccordionItem(
+          header: const Text('Success'),
+          headerStyle: AccordionHeaderStyle(
+            backgroundColor: Colors.green.shade50,
+            borderColor: Colors.green.shade300,
+            iconColor: Colors.green.shade700,
+          ),
+          contentStyle: AccordionContentStyle(
+            backgroundColor: Colors.green.shade50,
+          ),
+          content: const Text('This panel has a green header and body.'),
+        ),
+        AccordionItem(
+          header: const Text('Warning'),
+          headerStyle: AccordionHeaderStyle(
+            backgroundColor: Colors.orange.shade50,
+            borderColor: Colors.orange.shade300,
+            iconColor: Colors.orange.shade800,
+          ),
+          contentStyle: AccordionContentStyle(
+            backgroundColor: Colors.orange.shade50,
+          ),
+          content: const Text('This one is orange — a different body color.'),
         ),
       ],
     );

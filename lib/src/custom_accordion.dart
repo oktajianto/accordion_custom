@@ -44,6 +44,8 @@ class AccordionItem {
     this.initiallyExpanded = false,
     this.enabled = true,
     this.semanticLabel,
+    this.headerStyle,
+    this.contentStyle,
   }) : assert(
          (header == null) != (headerBuilder == null),
          'Provide exactly one of header or headerBuilder.',
@@ -71,6 +73,16 @@ class AccordionItem {
 
   /// Optional semantic label announced for the header by screen readers.
   final String? semanticLabel;
+
+  /// Per-panel header style that **replaces** the accordion's `headerStyle` for
+  /// this panel when non-null. To inherit and tweak, pass
+  /// `accordionHeaderStyle.copyWith(...)`.
+  final AccordionHeaderStyle? headerStyle;
+
+  /// Per-panel content style that **replaces** the accordion's `contentStyle`
+  /// for this panel when non-null. To inherit and tweak, pass
+  /// `accordionContentStyle.copyWith(...)`.
+  final AccordionContentStyle? contentStyle;
 }
 
 /// A customizable, zero-dependency accordion (expandable panel list).
@@ -234,13 +246,15 @@ class _AccordionCustomState extends State<AccordionCustom> {
         panels.add(SizedBox(height: widget.itemSpacing));
       }
       final int index = i;
+      final AccordionItem item = _itemAt(context, index);
       panels.add(
         _AccordionPanel(
-          item: _itemAt(context, index),
+          item: item,
           isExpanded: _controller.isExpanded(index),
           onToggle: () => _controller.toggle(index),
-          headerStyle: widget.headerStyle,
-          contentStyle: widget.contentStyle,
+          // A per-item style replaces the accordion-level style for this panel.
+          headerStyle: item.headerStyle ?? widget.headerStyle,
+          contentStyle: item.contentStyle ?? widget.contentStyle,
           animationDuration: widget.animationDuration,
           animationCurve: widget.animationCurve,
         ),

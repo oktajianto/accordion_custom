@@ -8,6 +8,8 @@
   `toggle`, `expandAll`, `collapseAll`, `isExpanded`, and `expandedIndexes`.
 - Per-item `initiallyExpanded`, `enabled`, custom `header`/`headerBuilder`, and
   arbitrary `content` (including nested accordions).
+- Per-item `headerStyle`/`contentStyle` that override the accordion-level style,
+  so individual panels can look different.
 - Full styling through `AccordionHeaderStyle` (background, border color/width,
   corner radius, padding, text style, and a rotating icon with configurable
   position) and `AccordionContentStyle` (background, padding, text style,

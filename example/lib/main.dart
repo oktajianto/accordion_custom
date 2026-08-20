@@ -36,6 +36,7 @@ class HomePage extends StatelessWidget {
           _Section('Multiple mode', MultipleDemo()),
           _Section('Controller: expand / collapse all', ControllerDemo()),
           _Section('Custom colors, border & radius', StyledDemo()),
+          _Section('Divider between header & content', DividerDemo()),
           _Section('Nested accordion', NestedDemo()),
           _Section('.builder from a data list', BuilderDemo()),
         ],
@@ -202,6 +203,36 @@ class StyledDemo extends StatelessWidget {
         AccordionItem(
           header: Text('Second themed panel'),
           content: Text('itemSpacing puts a gap between cards.'),
+        ),
+      ],
+    );
+  }
+}
+
+class DividerDemo extends StatelessWidget {
+  const DividerDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // The header/content divider is off by default; enable it via
+    // AccordionContentStyle.dividerColor.
+    return AccordionCustom(
+      contentStyle: AccordionContentStyle(
+        dividerColor: Colors.grey.shade300,
+        dividerWidth: 1,
+      ),
+      children: const [
+        AccordionItem(
+          header: Text('What is accordion_custom?'),
+          content: Text(
+            'A line now separates this content from the header. '
+            'The divider only shows while the panel is expanded.',
+          ),
+          initiallyExpanded: true,
+        ),
+        AccordionItem(
+          header: Text('Another panel'),
+          content: Text('Same divider style applies here too.'),
         ),
       ],
     );

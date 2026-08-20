@@ -1,0 +1,36 @@
+name: accordion_custom
+description: >-
+  A customizable, zero-dependency Flutter accordion with single/multiple expand
+  modes, nested panels, a controller, keyboard navigation, and full styling.
+version: 0.1.0
+homepage: https://github.com/oktajianto/accordion_custom
+repository: https://github.com/oktajianto/accordion_custom
+issue_tracker: https://github.com/oktajianto/accordion_custom/issues
+
+topics:
+  - accordion
+  - expansion
+  - ui
+  - widgets
+  - collapse
+
+# Floor covers the newest framework API used (Color.withValues, Flutter 3.27 /
+# Dart 3.6) and the modern "tall" formatter style (Dart 3.7+).
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:

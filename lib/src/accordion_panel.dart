@@ -35,9 +35,10 @@ class _AccordionPanel extends StatelessWidget {
     final Widget panel = DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: headerStyle.borderRadius,
-        border: headerStyle.borderWidth > 0
-            ? Border.all(color: borderColor, width: headerStyle.borderWidth)
-            : null,
+        border:
+            headerStyle.borderWidth > 0
+                ? Border.all(color: borderColor, width: headerStyle.borderWidth)
+                : null,
       ),
       child: ClipRRect(
         borderRadius: headerStyle.borderRadius,
@@ -60,18 +61,21 @@ class _AccordionPanel extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context, bool enabled) {
-    final Color? background = isExpanded
-        ? (headerStyle.expandedBackgroundColor ?? headerStyle.backgroundColor)
-        : headerStyle.backgroundColor;
+    final Color? background =
+        isExpanded
+            ? (headerStyle.expandedBackgroundColor ??
+                headerStyle.backgroundColor)
+            : headerStyle.backgroundColor;
 
-    final Widget headerContent = item.headerBuilder != null
-        ? item.headerBuilder!(context, isExpanded)
-        : DefaultTextStyle.merge(
-            style:
-                headerStyle.textStyle ??
-                const TextStyle(fontWeight: FontWeight.w600),
-            child: item.header!,
-          );
+    final Widget headerContent =
+        item.headerBuilder != null
+            ? item.headerBuilder!(context, isExpanded)
+            : DefaultTextStyle.merge(
+              style:
+                  headerStyle.textStyle ??
+                  const TextStyle(fontWeight: FontWeight.w600),
+              child: item.header!,
+            );
 
     final List<Widget> row = [Expanded(child: headerContent)];
     final Widget? icon = _buildIcon();
@@ -98,10 +102,7 @@ class _AccordionPanel extends StatelessWidget {
       type: MaterialType.transparency,
       child: Ink(
         color: background,
-        child: InkWell(
-          onTap: enabled ? onToggle : null,
-          child: header,
-        ),
+        child: InkWell(onTap: enabled ? onToggle : null, child: header),
       ),
     );
   }
@@ -114,40 +115,43 @@ class _AccordionPanel extends StatelessWidget {
       turns: isExpanded ? headerStyle.expandedIconTurns : 0,
       duration: animationDuration,
       curve: animationCurve,
-      child: headerStyle.iconColor != null
-          ? IconTheme.merge(
-              data: IconThemeData(color: headerStyle.iconColor),
-              child: base,
-            )
-          : base,
+      child:
+          headerStyle.iconColor != null
+              ? IconTheme.merge(
+                data: IconThemeData(color: headerStyle.iconColor),
+                child: base,
+              )
+              : base,
     );
   }
 
   Widget _buildContent() {
     // Collapse to zero height with a shrink child so AnimatedSize can tween
     // between the two. The real content is only built while expanded.
-    final Widget child = isExpanded
-        ? DecoratedBox(
-            decoration: BoxDecoration(
-              color: contentStyle.backgroundColor,
-              border: contentStyle.dividerColor != null
-                  ? Border(
-                      top: BorderSide(
-                        color: contentStyle.dividerColor!,
-                        width: contentStyle.dividerWidth,
-                      ),
-                    )
-                  : null,
-            ),
-            child: Padding(
-              padding: contentStyle.padding,
-              child: DefaultTextStyle.merge(
-                style: contentStyle.textStyle ?? const TextStyle(),
-                child: item.content,
+    final Widget child =
+        isExpanded
+            ? DecoratedBox(
+              decoration: BoxDecoration(
+                color: contentStyle.backgroundColor,
+                border:
+                    contentStyle.dividerColor != null
+                        ? Border(
+                          top: BorderSide(
+                            color: contentStyle.dividerColor!,
+                            width: contentStyle.dividerWidth,
+                          ),
+                        )
+                        : null,
               ),
-            ),
-          )
-        : const SizedBox(width: double.infinity);
+              child: Padding(
+                padding: contentStyle.padding,
+                child: DefaultTextStyle.merge(
+                  style: contentStyle.textStyle ?? const TextStyle(),
+                  child: item.content,
+                ),
+              ),
+            )
+            : const SizedBox(width: double.infinity);
 
     return ClipRect(
       child: AnimatedSize(

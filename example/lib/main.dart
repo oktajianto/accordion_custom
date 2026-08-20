@@ -88,7 +88,9 @@ class BasicSingleDemo extends StatelessWidget {
         ),
         AccordionItem(
           header: Text('Can I style it?'),
-          content: Text('Yes — colors, borders, radius, padding, and the icon.'),
+          content: Text(
+            'Yes — colors, borders, radius, padding, and the icon.',
+          ),
         ),
       ],
     );

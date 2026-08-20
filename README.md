@@ -74,6 +74,9 @@ AccordionCustom(
 
 ## Multiple open panels
 
+Set `mode: AccordionMode.multiple` to let panels open and close independently —
+any number can be open at once.
+
 ```dart
 AccordionCustom(
   mode: AccordionMode.multiple,
@@ -93,6 +96,9 @@ AccordionCustom(
 
 ## Building from a data list
 
+Use `AccordionCustom.builder` to create panels lazily from a list, like
+`ListView.builder` — ideal for long or dynamic data such as an FAQ.
+
 ```dart
 AccordionCustom.builder(
   itemCount: faqs.length,
@@ -104,6 +110,9 @@ AccordionCustom.builder(
 ```
 
 ## Programmatic control
+
+Attach an `AccordionController` to open, close, or toggle panels from anywhere in
+your code (e.g. another button), and to read which panels are currently open.
 
 ```dart
 final controller = AccordionController();

@@ -178,6 +178,30 @@ AccordionCustom(
 
 The divider only shows while the panel is expanded.
 
+### Custom padding
+
+The header and the content have independent padding
+(`EdgeInsetsGeometry`, so `only`/`symmetric`/`EdgeInsetsDirectional` all work):
+
+```dart
+AccordionCustom(
+  headerStyle: const AccordionHeaderStyle(
+    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+  ),
+  contentStyle: const AccordionContentStyle(
+    padding: EdgeInsets.all(24),
+  ),
+  children: const [
+    AccordionItem(header: Text('Roomy panel'), content: Text('More breathing room.')),
+  ],
+)
+```
+
+Defaults: header `EdgeInsets.symmetric(horizontal: 16, vertical: 14)`, content
+`EdgeInsets.fromLTRB(16, 4, 16, 16)`.
+
+### Custom header
+
 Provide a completely custom header with `headerBuilder`, which receives the
 current expanded state:
 
@@ -191,6 +215,81 @@ AccordionItem(
     ],
   ),
   content: const Text('...'),
+)
+```
+
+### Custom or hidden icon
+
+Swap the default chevron for any widget, change its rotation, or hide it:
+
+```dart
+AccordionCustom(
+  headerStyle: const AccordionHeaderStyle(
+    icon: Icon(Icons.add),        // any widget
+    expandedIconTurns: 0.125,     // 45° turn when expanded (a + becomes ×)
+    iconPosition: AccordionIconPosition.leading,
+  ),
+  children: const [
+    AccordionItem(header: Text('Custom icon'), content: Text('...')),
+  ],
+)
+
+// Or hide the icon entirely:
+AccordionCustom(
+  headerStyle: const AccordionHeaderStyle(showIcon: false),
+  children: const [
+    AccordionItem(header: Text('No icon'), content: Text('...')),
+  ],
+)
+```
+
+### Disabled panels
+
+A panel with `enabled: false` is dimmed and ignores taps (a controller can still
+change it):
+
+```dart
+AccordionCustom(
+  children: const [
+    AccordionItem(
+      header: Text('Unavailable'),
+      content: Text('You cannot open this by tapping.'),
+      enabled: false,
+    ),
+  ],
+)
+```
+
+### Initial state
+
+Mark a panel `initiallyExpanded: true` to have it open on first build. In single
+mode, if several set it, only the first wins:
+
+```dart
+AccordionCustom(
+  mode: AccordionMode.multiple,
+  children: const [
+    AccordionItem(
+      header: Text('Open on start'),
+      content: Text('Visible without a tap.'),
+      initiallyExpanded: true,
+    ),
+    AccordionItem(header: Text('Closed'), content: Text('...')),
+  ],
+)
+```
+
+### Animation
+
+Tune the expand/collapse (and icon rotation) animation:
+
+```dart
+AccordionCustom(
+  animationDuration: const Duration(milliseconds: 500),
+  animationCurve: Curves.easeInOutBack,
+  children: const [
+    AccordionItem(header: Text('Slow & bouncy'), content: Text('...')),
+  ],
 )
 ```
 

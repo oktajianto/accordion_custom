@@ -34,11 +34,16 @@ class HomePage extends StatelessWidget {
         children: const [
           _Section('Single mode (default)', BasicSingleDemo()),
           _Section('Multiple mode', MultipleDemo()),
+          _Section('.builder from a data list', BuilderDemo()),
           _Section('Controller: expand / collapse all', ControllerDemo()),
           _Section('Custom colors, border & radius', StyledDemo()),
+          _Section('Custom padding', PaddingDemo()),
           _Section('Divider between header & content', DividerDemo()),
+          _Section('Custom header (headerBuilder)', CustomHeaderDemo()),
+          _Section('Custom & hidden icon', IconDemo()),
+          _Section('Disabled panel', DisabledDemo()),
+          _Section('Animation speed & curve', AnimationDemo()),
           _Section('Nested accordion', NestedDemo()),
-          _Section('.builder from a data list', BuilderDemo()),
         ],
       ),
     );
@@ -209,6 +214,34 @@ class StyledDemo extends StatelessWidget {
   }
 }
 
+class PaddingDemo extends StatelessWidget {
+  const PaddingDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AccordionCustom(
+      headerStyle: AccordionHeaderStyle(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      ),
+      contentStyle: AccordionContentStyle(padding: EdgeInsets.all(24)),
+      children: [
+        AccordionItem(
+          header: Text('Roomy panel'),
+          content: Text(
+            'Header and content use independent padding. Here the header is '
+            'taller and the content sits inside 24px on every side.',
+          ),
+          initiallyExpanded: true,
+        ),
+        AccordionItem(
+          header: Text('Second panel'),
+          content: Text('Same generous padding applies.'),
+        ),
+      ],
+    );
+  }
+}
+
 class DividerDemo extends StatelessWidget {
   const DividerDemo({super.key});
 
@@ -233,6 +266,115 @@ class DividerDemo extends StatelessWidget {
         AccordionItem(
           header: Text('Another panel'),
           content: Text('Same divider style applies here too.'),
+        ),
+      ],
+    );
+  }
+}
+
+class CustomHeaderDemo extends StatelessWidget {
+  const CustomHeaderDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // headerBuilder receives the current expanded state, so the header can
+    // react to it (icon swap, color change, etc.).
+    return AccordionCustom(
+      children: [
+        AccordionItem(
+          headerBuilder:
+              (context, isExpanded) => Row(
+                children: [
+                  Icon(
+                    isExpanded ? Icons.folder_open : Icons.folder,
+                    color: Colors.amber.shade800,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    isExpanded ? 'Folder (open)' : 'Folder',
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+          content: const Text('The header rebuilt itself when you opened it.'),
+        ),
+      ],
+    );
+  }
+}
+
+class IconDemo extends StatelessWidget {
+  const IconDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        // A "+" that rotates 45° into an "x" when expanded.
+        AccordionCustom(
+          headerStyle: AccordionHeaderStyle(
+            icon: Icon(Icons.add),
+            expandedIconTurns: 0.125,
+            iconPosition: AccordionIconPosition.leading,
+          ),
+          children: [
+            AccordionItem(
+              header: Text('Custom "+" icon'),
+              content: Text('The plus rotates 45° into a cross when open.'),
+            ),
+          ],
+        ),
+        SizedBox(height: 12),
+        // No icon at all.
+        AccordionCustom(
+          headerStyle: AccordionHeaderStyle(showIcon: false),
+          children: [
+            AccordionItem(
+              header: Text('No icon'),
+              content: Text('showIcon: false hides the indicator entirely.'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class DisabledDemo extends StatelessWidget {
+  const DisabledDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AccordionCustom(
+      children: [
+        AccordionItem(
+          header: Text('Available'),
+          content: Text('This one opens on tap.'),
+        ),
+        AccordionItem(
+          header: Text('Unavailable (disabled)'),
+          content: Text('You should not be able to read this by tapping.'),
+          enabled: false,
+        ),
+      ],
+    );
+  }
+}
+
+class AnimationDemo extends StatelessWidget {
+  const AnimationDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AccordionCustom(
+      animationDuration: Duration(milliseconds: 500),
+      animationCurve: Curves.easeInOutBack,
+      children: [
+        AccordionItem(
+          header: Text('Slow & bouncy'),
+          content: Text(
+            'A longer duration and an easeInOutBack curve give a springy feel.',
+          ),
         ),
       ],
     );

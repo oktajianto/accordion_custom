@@ -4,6 +4,11 @@
 [![dart](https://img.shields.io/badge/dart-website-00B4AB.svg)](https://dart.dev)
 [![platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Mac%20%7C%20Linux%20%7C%20Windows-brightgreen.svg)](https://flutter.dev)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![pub](https://img.shields.io/pub/v/accordion_custom.svg)](https://pub.dev/packages/accordion_custom)
+[![pub points](https://img.shields.io/pub/points/accordion_custom.svg)](https://pub.dev/packages/accordion_custom/score)
+[![likes](https://img.shields.io/pub/likes/accordion_custom.svg)](https://pub.dev/packages/accordion_custom/score)
+[![stars](https://img.shields.io/github/stars/oktajianto/accordion_custom.svg?style=social)](https://github.com/oktajianto/accordion_custom)
+[![CI](https://github.com/oktajianto/accordion_custom/actions/workflows/ci.yml/badge.svg)](https://github.com/oktajianto/accordion_custom/actions/workflows/ci.yml)
 
 A customizable, **zero-dependency** accordion (expandable panel list) for
 Flutter. Simple to set up, yet scales to real needs: **single or multiple**

@@ -3,7 +3,7 @@
 Catatan perencanaan fitur plugin `accordion_custom` (pure-Dart, zero-dependency).
 Status: ✅ selesai · 🔲 belum · 🕒 opsional/ide ke depan.
 
-Terakhir diperbarui: 2026-08-21.
+Terakhir diperbarui: 2026-08-22.
 
 ---
 
@@ -77,12 +77,14 @@ Terakhir diperbarui: 2026-08-21.
 - ✅ Example gallery (semua fitur ada demonya)
 - ✅ CI GitHub Actions (format, analyze, test, publish dry-run)
 - ✅ README lengkap: penjelasan singkat + contoh kode tiap fitur
-- ✅ Placeholder GIF per fitur di README (folder `screenshots/`)
+- ✅ GIF asli per fitur di `screenshots/` + section Preview (`all_preview.gif`)
+- ✅ Halaman demo per-fitur di example (tombol → 1 fitur per layar, untuk screenshot)
 - ✅ LICENSE (MIT), CHANGELOG (0.1.0), analysis_options, .gitignore/.pubignore
 - ✅ Nama `accordion_custom` tersedia di pub.dev (dicek 404)
-- 🔲 Upload file GIF asli ke `screenshots/`
-- 🔲 Badge CI di README
-- 🔲 Screenshot untuk `screenshots:` di pubspec (thumbnail pub.dev)
+- ✅ Badge di README (pub, pub points, likes, stars, CI)
+- ✅ Screenshot `thumbnail.png` untuk `screenshots:` di pubspec (thumbnail pub.dev)
+- ✅ Arsip publish ramping (~66 KB): GIF dirujuk via URL raw GitHub + `.pubignore`
+  hanya menyertakan `thumbnail.png`
 - 🔲 Tag rilis `v0.1.0`
 - 🔲 `flutter pub publish` (rilis pertama ke pub.dev)
 

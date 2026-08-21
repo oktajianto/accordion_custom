@@ -1,6 +1,15 @@
 build/
 .dart_tool/
 implementasi_plan.md
+
+# Keep the published archive lean. The README references screenshots via absolute
+# raw.githubusercontent.com URLs, so they render on pub.dev without shipping the
+# (large) GIF files. The one exception is thumbnail.png, kept in the archive and
+# declared in pubspec's `screenshots:` so pub.dev shows a thumbnail on the search
+# card / package page. (Match with `screenshots/*`, not `screenshots/`, so the
+# re-include works — git can't re-include a file whose parent dir is fully excluded.)
+screenshots/*
+!screenshots/thumbnail.png
 example/.dart_tool/
 example/android/
 example/ios/

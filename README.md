@@ -40,7 +40,7 @@ styling, no single-vs-multiple switch, and awkward programmatic control.
 
 ## Preview
 
-![All features preview](screenshots/all_preview.gif)
+![All features preview](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/all_preview.gif)
 
 ## Getting started
 
@@ -61,7 +61,7 @@ import 'package:accordion_custom/accordion_custom.dart';
 By default the accordion is in **single** mode: opening one panel closes the
 others.
 
-![Single-mode accordion demo](screenshots/basic.gif)
+![Single-mode accordion demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/basic.gif)
 
 ```dart
 AccordionCustom(
@@ -83,7 +83,7 @@ AccordionCustom(
 Set `mode: AccordionMode.multiple` to let panels open and close independently —
 any number can be open at once.
 
-![Multiple open panels demo](screenshots/multiple.gif)
+![Multiple open panels demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/multiple.gif)
 
 ```dart
 AccordionCustom(
@@ -107,7 +107,7 @@ AccordionCustom(
 Use `AccordionCustom.builder` to create panels lazily from a list, like
 `ListView.builder` — ideal for long or dynamic data such as an FAQ.
 
-![Data-list builder demo](screenshots/builder.gif)
+![Data-list builder demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/builder.gif)
 
 ```dart
 AccordionCustom.builder(
@@ -124,7 +124,7 @@ AccordionCustom.builder(
 Attach an `AccordionController` to open, close, or toggle panels from anywhere in
 your code (e.g. another button), and to read which panels are currently open.
 
-![Programmatic controller demo](screenshots/controller.gif)
+![Programmatic controller demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/controller.gif)
 
 ```dart
 final controller = AccordionController();
@@ -154,7 +154,7 @@ are done, like any `ChangeNotifier`.
 `AccordionHeaderStyle` controls the header **and the panel outline** (border and
 radius); `AccordionContentStyle` controls the content area.
 
-![Custom colors, border, and radius demo](screenshots/styling.gif)
+![Custom colors, border, and radius demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/styling.gif)
 
 ```dart
 AccordionCustom(
@@ -185,7 +185,7 @@ AccordionCustom(
 one panel differently, set `headerStyle`/`contentStyle` on its `AccordionItem` —
 they **replace** the accordion-level style for that panel:
 
-![Per-panel styling demo](screenshots/per-panel.gif)
+![Per-panel styling demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/per-panel.gif)
 
 ```dart
 AccordionCustom(
@@ -214,7 +214,7 @@ To inherit the accordion's style and change only a few fields, pass a
 By default there is **no line** separating the header from the content. To show
 one, set `dividerColor` (and optionally `dividerWidth`) on the content style:
 
-![Header/content divider demo](screenshots/divider.gif)
+![Header/content divider demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/divider.gif)
 
 ```dart
 AccordionCustom(
@@ -238,7 +238,7 @@ The divider only shows while the panel is expanded.
 The header and the content have independent padding
 (`EdgeInsetsGeometry`, so `only`/`symmetric`/`EdgeInsetsDirectional` all work):
 
-![Custom padding demo](screenshots/padding.gif)
+![Custom padding demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/padding.gif)
 
 ```dart
 AccordionCustom(
@@ -262,7 +262,7 @@ Defaults: header `EdgeInsets.symmetric(horizontal: 16, vertical: 14)`, content
 Provide a completely custom header with `headerBuilder`, which receives the
 current expanded state:
 
-![Custom header demo](screenshots/custom-header.gif)
+![Custom header demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/custom-header.gif)
 
 ```dart
 AccordionItem(
@@ -281,7 +281,7 @@ AccordionItem(
 
 Swap the default chevron for any widget, change its rotation, or hide it:
 
-![Custom or hidden icon demo](screenshots/icon.gif)
+![Custom or hidden icon demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/icon.gif)
 
 ```dart
 AccordionCustom(
@@ -309,7 +309,7 @@ AccordionCustom(
 A panel with `enabled: false` is dimmed and ignores taps (a controller can still
 change it):
 
-![Disabled panel demo](screenshots/disabled.gif)
+![Disabled panel demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/disabled.gif)
 
 ```dart
 AccordionCustom(
@@ -328,7 +328,7 @@ AccordionCustom(
 Mark a panel `initiallyExpanded: true` to have it open on first build. In single
 mode, if several set it, only the first wins:
 
-![Initially expanded demo](screenshots/initial-state.png)
+![Initially expanded demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/initial-state.png)
 
 ```dart
 AccordionCustom(
@@ -348,7 +348,7 @@ AccordionCustom(
 
 Tune the expand/collapse (and icon rotation) animation:
 
-![Animation duration and curve demo](screenshots/animation.gif)
+![Animation duration and curve demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/animation.gif)
 
 ```dart
 AccordionCustom(
@@ -364,7 +364,7 @@ AccordionCustom(
 
 A panel's `content` is any widget, so an accordion can contain another:
 
-![Nested accordion demo](screenshots/nesting.gif)
+![Nested accordion demo](https://raw.githubusercontent.com/oktajianto/accordion_custom/main/screenshots/nesting.gif)
 
 ```dart
 AccordionCustom(

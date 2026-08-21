@@ -16,7 +16,7 @@ root `README.md`):
 | `custom-header.gif` | Custom header |
 | `icon.gif` | Custom or hidden icon |
 | `disabled.gif` | Disabled panels |
-| `initial-state.gif` | Initial state |
+| `initial-state.png` | Initial state |
 | `animation.gif` | Animation |
 | `nesting.gif` | Nesting |
 

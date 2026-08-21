@@ -22,6 +22,25 @@ class DemoApp extends StatelessWidget {
   }
 }
 
+// A single source of truth for every feature demo, reused by the scrolling
+// gallery on the home page and by the per-feature screenshot pages below.
+const List<(String, Widget)> demos = [
+  ('Single mode (default)', BasicSingleDemo()),
+  ('Multiple mode', MultipleDemo()),
+  ('.builder from a data list', BuilderDemo()),
+  ('Controller: expand / collapse all', ControllerDemo()),
+  ('Custom colors, border & radius', StyledDemo()),
+  ('Per-panel styling (different per item)', PerPanelDemo()),
+  ('Custom padding', PaddingDemo()),
+  ('Divider between header & content', DividerDemo()),
+  ('Custom header (headerBuilder)', CustomHeaderDemo()),
+  ('Custom & hidden icon', IconDemo()),
+  ('Disabled panel', DisabledDemo()),
+  ('Initially expanded panel', InitialStateDemo()),
+  ('Animation speed & curve', AnimationDemo()),
+  ('Nested accordion', NestedDemo()),
+];
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -31,22 +50,80 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text('accordion_custom')),
       body: ListView(
         padding: const EdgeInsets.all(16),
-        children: const [
-          _Section('Single mode (default)', BasicSingleDemo()),
-          _Section('Multiple mode', MultipleDemo()),
-          _Section('.builder from a data list', BuilderDemo()),
-          _Section('Controller: expand / collapse all', ControllerDemo()),
-          _Section('Custom colors, border & radius', StyledDemo()),
-          _Section('Per-panel styling (different per item)', PerPanelDemo()),
-          _Section('Custom padding', PaddingDemo()),
-          _Section('Divider between header & content', DividerDemo()),
-          _Section('Custom header (headerBuilder)', CustomHeaderDemo()),
-          _Section('Custom & hidden icon', IconDemo()),
-          _Section('Disabled panel', DisabledDemo()),
-          _Section('Animation speed & curve', AnimationDemo()),
-          _Section('Nested accordion', NestedDemo()),
+        children: [
+          for (final (title, demo) in demos) _Section(title, demo),
+          const Divider(),
+          const SizedBox(height: 8),
+          Center(
+            child: TextButton.icon(
+              icon: const Icon(Icons.photo_camera_outlined),
+              label: const Text('Open per-feature demos (for screenshots)'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const DemoGalleryPage(),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 24),
         ],
       ),
+    );
+  }
+}
+
+// A plain list of buttons — one per feature. Tapping a button opens that single
+// demo on its own screen, so you can screenshot each feature in isolation.
+class DemoGalleryPage extends StatelessWidget {
+  const DemoGalleryPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Per-feature demos')),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          for (final (title, demo) in demos)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => DemoDetailPage(title: title, demo: demo),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(title, textAlign: TextAlign.center),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+// A single feature on its own screen, ready to screenshot.
+class DemoDetailPage extends StatelessWidget {
+  const DemoDetailPage({super.key, required this.title, required this.demo});
+
+  final String title;
+  final Widget demo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: ListView(padding: const EdgeInsets.all(16), children: [demo]),
     );
   }
 }
@@ -397,6 +474,30 @@ class DisabledDemo extends StatelessWidget {
           header: Text('Unavailable (disabled)'),
           content: Text('You should not be able to read this by tapping.'),
           enabled: false,
+        ),
+      ],
+    );
+  }
+}
+
+class InitialStateDemo extends StatelessWidget {
+  const InitialStateDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // initiallyExpanded: true opens a panel on first build. In single mode only
+    // the first one wins, so multiple mode is used here to keep it open.
+    return const AccordionCustom(
+      mode: AccordionMode.multiple,
+      children: [
+        AccordionItem(
+          header: Text('Open on start'),
+          content: Text('This panel is visible without a tap.'),
+          initiallyExpanded: true,
+        ),
+        AccordionItem(
+          header: Text('Closed on start'),
+          content: Text('This one begins collapsed.'),
         ),
       ],
     );

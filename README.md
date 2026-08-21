@@ -38,6 +38,10 @@ styling, no single-vs-multiple switch, and awkward programmatic control.
 - **Simple by default** — the basic case is a list of `AccordionItem`s; every
   extra feature is opt-in.
 
+## Preview
+
+![All features preview](screenshots/all_preview.gif)
+
 ## Getting started
 
 Add the package:
@@ -324,7 +328,7 @@ AccordionCustom(
 Mark a panel `initiallyExpanded: true` to have it open on first build. In single
 mode, if several set it, only the first wins:
 
-![Initially expanded demo](screenshots/initial-state.gif)
+![Initially expanded demo](screenshots/initial-state.png)
 
 ```dart
 AccordionCustom(

@@ -14,6 +14,11 @@ topics:
   - widgets
   - collapse
 
+# The first screenshot is used as the thumbnail on pub.dev search results.
+screenshots:
+  - description: A customizable, zero-dependency Flutter accordion.
+    path: screenshots/thumbnail.png
+
 # Floor covers the newest framework API used (Color.withValues, Flutter 3.27 /
 # Dart 3.6) and the modern "tall" formatter style (Dart 3.7+).
 environment:

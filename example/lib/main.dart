@@ -95,7 +95,8 @@ class DemoGalleryPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
-                        builder: (_) => DemoDetailPage(title: title, demo: demo),
+                        builder:
+                            (_) => DemoDetailPage(title: title, demo: demo),
                       ),
                     );
                   },
